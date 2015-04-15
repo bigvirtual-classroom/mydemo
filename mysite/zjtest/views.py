@@ -25,6 +25,10 @@ def turnoff(req):
 def checkComStatus(req):
     return render_to_response('index.html', {'status':checkState()})
 
+def checkAjaxStatus(req):
+    #print checkState()
+    #return render_to_response('index.html', {'status':checkState()})
+    return HttpResponse(checkState())
 
 def checkState():
     checkCommStr = api_checkstatus()

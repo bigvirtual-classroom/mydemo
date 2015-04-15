@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'zjtest/turnon/$','zjtest.views.turnon'),
     url(r'zjtest/turnoff/$','zjtest.views.turnoff'),
     url(r'zjtest/checkComStatus/$','zjtest.views.checkComStatus'),
+    url(r'zjtest/checkAjaxStatus/$','zjtest.views.checkAjaxStatus'),
     url(r'^static/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.STATIC_URL}),
 ]

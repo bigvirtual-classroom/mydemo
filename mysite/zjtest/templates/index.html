@@ -10,30 +10,40 @@
 		
 	
 		function turnon(){
-			
-			location.href = "http://127.0.0.1:8000/zjtest/turnon";
-			
+			location.href = "http://192.168.10.148:8000/zjtest/turnon";
 		}
 		
 		function turnoff(){
 			
-			location.href = "http://127.0.0.1:8000/zjtest/turnoff";
+			location.href = "http://192.168.10.148:8000/zjtest/turnoff";
 			
 		}
 		
 		function checkState(){
-			location.href = "http://127.0.0.1:8000/zjtest/checkComStatus";
+			$.ajax({
+				type: "get", 
+				url: "http://192.168.10.148:8000/zjtest/checkAjaxStatus/", 
+				dataType: "text",
+		     	success: function (data) {
+		     		//alert(data)
+		     		$("#status_span").html(data);
+		     	},
+		     	error:function (state){
+		     		alert("error")
+		     	}
+			});
+			//location.href = "http://192.168.10.148:8000/zjtest/checkComStatus";
 		}
 		
 		function loginComputer(){
-			
+			$("#myscreen").attr("src","https://120.132.66.186/");
 		}
 		
 		function isOk(){
 			$.ajax({
 				type: "post", 
 				url: E_URL+"/login/out/"+user.sessionid, 
-				dataType: "json",
+				dataType: "html/text",
 		     	success: function (data) {
 					var href = location.href;
 					if( href.indexOf("/web/user/userinfo.html") > -1 ){
@@ -54,14 +64,20 @@
     	<button onclick="checkState()">查看状态</button>
 		当前状态:
 		
-		<pan>{{ status }}</pan>
-		</br>
+		<span id="status_span">{{ status }}</span>
+		<br>
 		<button onclick="turnon()">开机</button>
 		<button onclick="turnoff()">关机</button>
+		<button>创建新主机</button>
+		<button>修改主机配置</button>
 		
 		<div>执行结果：{{statusJson}}</div>
 		
 		<a href="https://120.132.66.186/" target="_blank">登录主机</a>
+		<button onclick="loginComputer()">登录主机</button><br>
+		<iframe src="" id="myscreen" style="width:500px;height:400px">
+		
+		</iframe>
     </div>
     
     <div class="mainbox_2">
