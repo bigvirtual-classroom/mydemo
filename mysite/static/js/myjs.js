@@ -35,7 +35,7 @@ var rhymeCompleter = {
     }
 }
 langTools.addCompleter(rhymeCompleter);
-var BASE_URL = basePsth + 'zjtest/'
+var BASE_URL = basePath + 'zjtest/'
 
 
 function getClassName(con) {

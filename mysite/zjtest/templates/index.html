@@ -9,16 +9,55 @@
 <script type="text/javascript" src="../../static/js/static.js">
 </script>
 <script type="text/javascript">
-		
+	//遮盖层 -开始
+	function getPageSizeWithScroll(){  
+	    if (window.innerHeight && window.scrollMaxY) {// Firefox  
+	        yWithScroll = window.innerHeight + window.scrollMaxY;  
+	        xWithScroll = window.innerWidth + window.scrollMaxX;  
+	    } else if (document.body.scrollHeight > document.body.offsetHeight){ // all but Explorer Mac  
+	        yWithScroll = document.body.scrollHeight;  
+	        xWithScroll = document.body.scrollWidth;  
+	    } else { // works in Explorer 6 Strict, Mozilla (not FF) and Safari  
+	        yWithScroll = document.body.offsetHeight;  
+	        xWithScroll = document.body.offsetWidth;  
+	    }  
+	    return [xWithScroll, yWithScroll];  
+	} 
+
+	function SuperMan_show_bg() {  
+		var de = document.documentElement;  
+		var size = getPageSizeWithScroll();  
+		$("#crm_tarena_bg").css({left:0, top:0, width:'100%', height:'100%' }).show();
+	}
+	function SuperMan_hide_bg() {  
+		$("#crm_tarena_bg").hide(); 
+	}
+//遮盖层 -结束	
 	
 		function turnon(){
 			location.href = basePath + "zjtest/turnon";
+
+
+
 		}
 		
 		function turnoff(){
 			
-			location.href = basePath + "zjtest/turnoff";
-			
+			//location.href = basePath + "zjtest/turnoff";
+            SuperMan_show_bg();
+            $.ajax({
+                type:"get",
+                url: basePath + "zjtest/checkAjaxStatus/",
+                dataType: "text",
+                success: function (data) {
+		     		//alert(data)
+                    SuperMan_hide_bg();
+		     		$("#status_span").html(data);
+		     	},
+		     	error:function (state){
+		     		alert("error")
+		     	}
+            })
 		}
 		
 		function checkState(){
@@ -59,6 +98,13 @@
 </head>
 
 <body>
+<div id="crm_tarena_bg" style="display:none;  
+    background-color: #E6E6E6 ;
+    filter:alpha(opacity=80);/*IE*/  
+    opacity:0.8;/*FF*/  
+    z-index:99999;  
+    position:absolute;
+    background:url(../../static/img/wait.jpg) center center no-repeat;"></div>
 <div class="wrap clearfloat">
   <div class="subbox"><a>实验室</a><a class="cur">在线code</a></div>
   <div class="mainbox">
@@ -72,8 +118,8 @@
 		<button onclick="turnoff()">关机</button>
 		<button>创建新主机</button>
 		<button>修改主机配置</button>
-		
-		<div>执行结果：{{statusJson}}</div>
+		<button>创建mysql服务</button>
+		<br>
 		
 		<a href="https://120.132.66.186/" target="_blank">登录主机</a>
 		<button onclick="loginComputer()">登录主机</button><br>
