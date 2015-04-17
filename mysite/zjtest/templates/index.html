@@ -6,23 +6,25 @@
 <link type="text/css" rel="stylesheet" href="../../static/css/index.css" />
 <script type="text/javascript" src="../../static/js/jquery-1.js">
 </script>
+<script type="text/javascript" src="../../static/js/static.js">
+</script>
 <script type="text/javascript">
 		
 	
 		function turnon(){
-			location.href = "http://192.168.118.142:8000/zjtest/turnon";
+			location.href = basePath + "zjtest/turnon";
 		}
 		
 		function turnoff(){
 			
-			location.href = "http://192.168.118.142:8000/zjtest/turnoff";
+			location.href = basePath + "zjtest/turnoff";
 			
 		}
 		
 		function checkState(){
 			$.ajax({
 				type: "get", 
-				url: "http://192.168.118.142:8000/zjtest/checkAjaxStatus/", 
+				url: basePath + "zjtest/checkAjaxStatus/",
 				dataType: "text",
 		     	success: function (data) {
 		     		//alert(data)
