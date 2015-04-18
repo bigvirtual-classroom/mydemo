@@ -90,4 +90,18 @@ $(document).ready(function () {
             $(".mainbox").children().hide().eq(theIndex).show();
         }
     });
+    $(".tcclose").click(function(){
+		$(this).parent().hide();
+		$(".tcbg").hide();
+		});
+
 });
+
+
+
+function crateHadoop(){
+	$(".tcbg").show();
+	$(".tcbox").show();
+	
+	
+	}

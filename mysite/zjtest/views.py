@@ -13,14 +13,15 @@ def turnon(req):
     turnonCommStr = api_turnon()
     runJson = subprocess.call(["curl", turnonCommStr])
 
-    return render_to_response('index.html', {'statusJson': runJson, 'status': checkState()})
-
+    #return render_to_response('index.html', {'statusJson': runJson, 'status': checkState()})
+    return HttpResponse(checkState())
 
 def turnoff(req):
     turnoffCommStr = api_turnoff()
     runJson = subprocess.call(["curl", turnoffCommStr])
 
-    return render_to_response('index.html', {'statusJson': runJson, 'status': checkState()})
+    #return render_to_response('index.html', {'statusJson': runJson, 'status': checkState()})
+    return HttpResponse(checkState())
 
 
 # check status

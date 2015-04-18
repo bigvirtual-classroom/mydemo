@@ -5,7 +5,7 @@ import json
 import os
 import commands
 CLASS_PATH = '/home/clicoy/user_class/'
-JAVA_HOME = '/usr/java/jdk1.7.0_71'
+JAVA_HOME = '/opt/java/jdk1.6.0_32'
 
 
 def build(request):

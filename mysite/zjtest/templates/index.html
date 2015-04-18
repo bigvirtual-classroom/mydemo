@@ -10,7 +10,7 @@
 </script>
 <script type="text/javascript">
 	//遮盖层 -开始
-	function getPageSizeWithScroll(){  
+	function getPageSizeWithScroll(){
 	    if (window.innerHeight && window.scrollMaxY) {// Firefox  
 	        yWithScroll = window.innerHeight + window.scrollMaxY;  
 	        xWithScroll = window.innerWidth + window.scrollMaxX;  
@@ -35,22 +35,13 @@
 //遮盖层 -结束	
 	
 		function turnon(){
-			location.href = basePath + "zjtest/turnon";
-
-
-
-		}
-		
-		function turnoff(){
-			
-			//location.href = basePath + "zjtest/turnoff";
+			//location.href = basePath + "zjtest/turnon";
             SuperMan_show_bg();
             $.ajax({
                 type:"get",
-                url: basePath + "zjtest/checkAjaxStatus/",
+                url: basePath + "zjtest/turnon",
                 dataType: "text",
                 success: function (data) {
-		     		//alert(data)
                     SuperMan_hide_bg();
 		     		$("#status_span").html(data);
 		     	},
@@ -58,6 +49,29 @@
 		     		alert("error")
 		     	}
             })
+
+
+		}
+		
+		function turnoff(){
+			
+			//location.href = basePath + "zjtest/turnoff";
+            if(confirm("确认关机？")){
+                SuperMan_show_bg();
+                $.ajax({
+                    type:"get",
+                    url: basePath + "zjtest/turnoff",
+                    dataType: "text",
+                    success: function (data) {
+                        SuperMan_hide_bg();
+                        $("#status_span").html(data);
+                    },
+                    error:function (state){
+                        alert("error")
+                    }
+                })
+            }
+
 		}
 		
 		function checkState(){
@@ -77,7 +91,7 @@
 		}
 		
 		function loginComputer(){
-			$("#myscreen").attr("src","https://120.132.66.186/");
+			$(".myiframe").attr("src","https://120.132.66.186/");
 		}
 		
 		function isOk(){
@@ -94,10 +108,30 @@
 		     	}
 			});
 		}
+
+    function createNewMochine(){
+        alert("新创建虚拟机请付费")
+
+    }
+
+    /*function crateHadoop(){
+        $("#hadoopnodes").css({left:500, top:100 }).show();
+    }
+
+    function nodesure(){
+        $("#hadoopnodes").css({left:500, top:100 }).hide();
+    }*/
 	</script>
 </head>
 
 <body>
+<div id="hadoopnodes" style="display:none; position:absolute;width:300px;height:200px;background-color: #E6E6E6 ;">
+    hadoop配置：<br>
+    请指定主机：<input type="text"><br>
+    请输入hadoop的节点数量：<input type="text"><br>
+    <button onclick="nodesure()"> 确定 </button>
+
+</div>
 <div id="crm_tarena_bg" style="display:none;  
     background-color: #E6E6E6 ;
     filter:alpha(opacity=80);/*IE*/  
@@ -108,24 +142,27 @@
 <div class="wrap clearfloat">
   <div class="subbox"><a>实验室</a><a class="cur">在线code</a></div>
   <div class="mainbox">
+
     <div class="mainbox_1" style="display:none;">
-    	<button onclick="checkState()">查看状态</button>
-		当前状态:
-		
-		<span id="status_span">{{ status }}</span>
-		<br>
-		<button onclick="turnon()">开机</button>
-		<button onclick="turnoff()">关机</button>
-		<button>创建新主机</button>
-		<button>修改主机配置</button>
-		<button>创建mysql服务</button>
-		<br>
-		
-		<a href="https://120.132.66.186/" target="_blank">登录主机</a>
-		<button onclick="loginComputer()">登录主机</button><br>
-		<iframe src="" id="myscreen" style="width:500px;height:400px">
-		
-		</iframe>
+
+        <div class="boxwrap">
+        <div class="viewStatus"><input name="" type="button" class="btn" value="查看状态" onclick="checkState()"><span>当前状态：</span><strong>running</strong></div>
+        <div class="operationbox clearfloat">
+          <input name="" type="button" class="btn" value="开机" onclick="turnon()">
+          <input name="" type="button" class="btn" value="关机" onclick="turnoff()">
+          <input name="" type="button" class="btn" value="创建新主机" onclick="createNewMochine()">
+          <input name="" type="button" class="btn" value="修改主机配置">
+          <input name="" type="button" class="btn" value="创建mysql服务">
+          <input name="" type="button" class="btn" value="创建redis服务">
+          <input name="" type="button" class="btn" value="创建hadoop集群" onClick="crateHadoop()">
+        </div>
+        <div class="operationbox clearfloat">
+          <input name="" type="button" class="btn" value="登录主机" onclick="loginComputer()">
+          <a href="https://120.132.66.186/">登录主机</a>
+        </div>
+        <div class="iframebox"><iframe class="myiframe"></iframe></div>
+      </div>
+
     </div>
     
     <div class="mainbox_2">
@@ -135,7 +172,19 @@
       </div>
       <div class="coderun_result" style="padding-left: 10px;"></div>
     </div>
-    
+
+
+      <div class="tcbg"></div>
+        <div class="tcbox"><div class="tcclose"></div>
+          <ul>
+              <li><span>hadoop配置:</li>
+              <li><span>请选择主节点：</span><input name="" type="text" class="inp_text"></li>
+            <li><span>请输入hadoop的节点数量：</span><input name="" type="text" class="inp_text"></li>
+            <li><input name="" type="button" class="btn btn_2" value="确定"><strong></strong></li>
+          </ul>
+        </div>
+
+
   </div>
 </div>
 
