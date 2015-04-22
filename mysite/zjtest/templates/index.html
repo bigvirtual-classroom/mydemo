@@ -10,19 +10,19 @@
 		
 	
 		function turnon(){
-			location.href = "http://192.168.10.148:8000/zjtest/turnon";
+			location.href = "http://192.168.118.142:8000/zjtest/turnon";
 		}
 		
 		function turnoff(){
 			
-			location.href = "http://192.168.10.148:8000/zjtest/turnoff";
+			location.href = "http://192.168.118.142:8000/zjtest/turnoff";
 			
 		}
 		
 		function checkState(){
 			$.ajax({
 				type: "get", 
-				url: "http://192.168.10.148:8000/zjtest/checkAjaxStatus/", 
+				url: "http://192.168.118.142:8000/zjtest/checkAjaxStatus/", 
 				dataType: "text",
 		     	success: function (data) {
 		     		//alert(data)
@@ -32,7 +32,7 @@
 		     		alert("error")
 		     	}
 			});
-			//location.href = "http://192.168.10.148:8000/zjtest/checkComStatus";
+			//location.href = "http://192.168.118.142:8000/zjtest/checkComStatus";
 		}
 		
 		function loginComputer(){
@@ -82,7 +82,7 @@
     
     <div class="mainbox_2">
       <div class="codebox">
-        <div class="codesub"><p class="clearfloat"><a>运行</a><a>编译</a></p></div>
+        <div class="codesub"><p class="clearfloat"><a onclick="submit_run_java()">运行</a><a onclick="submit_coding()">编译</a></p></div>
         <pre id="editor"></pre>
       </div>
       <div class="coderun_result"></div>
