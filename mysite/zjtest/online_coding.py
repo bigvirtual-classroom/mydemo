@@ -59,4 +59,5 @@ def build_java(class_name, path_root):
 def run_java(class_name, path_root):
     cmd = JAVA_HOME + '/jre/bin/java -cp ' + path_root+' '+class_name
     back = commands.getoutput(cmd)
+    # return back.replace('\n', '<br>')
     return back

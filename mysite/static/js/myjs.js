@@ -71,9 +71,9 @@ function submit_run_java() {
         eval("var obj = " + data);
         console.log(data);
         if (obj.status == 1) {
-            $(".coderun_result").html('<p>'+obj.msg+'</p>')
+            $(".coderun_result").html('<xmp>'+obj.msg+'</xmp>')
         } else {
-          $(".coderun_result").html("<p>编译失败!</p>")
+          $(".coderun_result").html("<xmp>编译失败!</xmp>")
         }
     }, "text");
 }
