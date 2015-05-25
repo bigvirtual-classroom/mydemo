@@ -1,59 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>zhoujia test,you are success</title>
-	<script type="text/javascript" src="../../static/js/jquery-1.10.2.min.js">
-	</script>
-	<script type="text/javascript">
-		
-	
-		function turnon(){
-			
-			location.href = "http://127.0.0.1:8000/zjtest/turnon";
-			
-		}
-		
-		function turnoff(){
-			
-			location.href = "http://127.0.0.1:8000/zjtest/turnoff";
-			
-		}
-		
-		function checkState(){
-			location.href = "http://127.0.0.1:8000/zjtest/checkComStatus";
-		}
-		
-		function loginComputer(){
-			
-		}
-		
-		function isOk(){
-			$.ajax({
-				type: "post", 
-				url: E_URL+"/login/out/"+user.sessionid, 
-				dataType: "json",
-		     	success: function (data) {
-					var href = location.href;
-					if( href.indexOf("/web/user/userinfo.html") > -1 ){
-						locationToHref("");
-					}
-					history.go(0);
-		     	}
-			});
-		}
-	</script>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link type="text/css" rel="stylesheet" href="style/index.css" />
 </head>
+
 <body>
-	<button onclick="checkState()">查看状态</button>
-	当前状态:
-	
-	<pan>{{ status }}</pan>
-	</br>
-	<button onclick="turnon()">开机</button>
-	<button onclick="turnoff()">关机</button>
-	<a href="https://120.132.66.186/" target="_blank">登录主机</a>
-	<div>执行结果：{{statusJson}}</div>
-	<!-- <h1>hello {{name}}! you are success</h1> -->
+<div class="wrap clearfloat">
+  <div class="subbox"><a>实验室</a><a class="cur">在线code</a></div>
+  <div class="mainbox">
+
+    <div class="mainbox_1" style="display:none;">
+      <div class="boxwrap">
+        <div class="viewStatus"><input name="" type="button" class="btn" value="查看状态"><span>当前状态：</span><strong>running</strong></div>
+        <div class="operationbox clearfloat">
+          <input name="" type="button" class="btn" value="开机">
+          <input name="" type="button" class="btn" value="关机">
+          <input name="" type="button" class="btn" value="创建新主机">
+          <input name="" type="button" class="btn" value="修改主机配置">
+          <input name="" type="button" class="btn" value="创建mysql服务">
+          <input name="" type="button" class="btn" value="创建redis服务">
+          <input name="" type="button" class="btn" value="创建hadoop集群" onClick="crateHadoop()">
+        </div>
+        <div class="operationbox clearfloat">
+          <input name="" type="button" class="btn" value="登录主机">
+          <a href="">登录主机</a>
+        </div>
+        <div class="iframebox"><iframe class="myiframe"></iframe></div>
+      </div>
+    </div>
+
+
+    <div class="mainbox_2">
+      <div class="codebox">
+        <div class="codesub"><p class="clearfloat"><a>运行</a><a>编译</a></p></div>
+        <pre id="editor"></pre>
+      </div>
+      <div class="coderun_result"></div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="tcbg"></div>
+<div class="tcbox"><div class="tcclose"></div>
+  <ul>
+    <li><span>请输入hadoop的节点数量：</span><input name="" type="text" class="inp_text"></li>
+    <li><input name="" type="button" class="btn btn_2" value="确定"><strong></strong></li>
+  </ul>
+</div>
+
+
+
+
+
+<script type="text/javascript" src="script/jquery-1.js"></script>
+<script type="text/javascript" src="script/ace.js"></script>
+<script type="text/javascript" src="script/ext-language_tools.js"></script>
+<script type="text/javascript" src="script/myjs.js"></script>
 </body>
 </html>

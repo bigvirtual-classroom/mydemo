@@ -93,7 +93,15 @@
 		function loginComputer(){
 			$(".myiframe").attr("src","https://120.132.66.186/");
 		}
-		
+
+        function loginWindows(){
+             if(!+[1,]){
+                 //alert("这是ie浏览器");
+                 $(".myiframe").attr("src","https://180.150.178.28/RDWeb");
+             }
+             else alert("暂时仅支持IE，请使用IE浏览器");
+
+		}
 		function isOk(){
 			$.ajax({
 				type: "post", 
@@ -146,7 +154,7 @@
     <div class="mainbox_1" style="display:none;">
 
         <div class="boxwrap">
-        <div class="viewStatus"><input name="" type="button" class="btn" value="查看状态" onclick="checkState()"><span>当前状态：</span><strong>running</strong></div>
+        <div class="viewStatus"><input name="" type="button" class="btn" value="查看状态" onclick="checkState()"><span>当前状态：</span><strong id="status_span" >running</strong></div>
         <div class="operationbox clearfloat">
           <input name="" type="button" class="btn" value="开机" onclick="turnon()">
           <input name="" type="button" class="btn" value="关机" onclick="turnoff()">
@@ -155,10 +163,15 @@
           <input name="" type="button" class="btn" value="创建mysql服务">
           <input name="" type="button" class="btn" value="创建redis服务">
           <input name="" type="button" class="btn" value="创建hadoop集群" onClick="crateHadoop()">
+            <input name="" type="button" class="btn" value="创建kafka集群服务">
+            <input name="" type="button" class="btn" value="创建zookeeper集群服务">
+
         </div>
         <div class="operationbox clearfloat">
           <input name="" type="button" class="btn" value="登录主机" onclick="loginComputer()">
           <a href="https://120.132.66.186/">登录主机</a>
+            <span style=" margin-left: 250px;">windows用户请点击这里（仅支持IE）：</span>
+            <input name="" type="button" class="btn" value="登录windows" onclick="loginWindows()" style="float:right; margin-right: 300px;">
         </div>
         <div class="iframebox"><iframe class="myiframe"></iframe></div>
       </div>
